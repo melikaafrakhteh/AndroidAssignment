@@ -1,10 +1,10 @@
 package ir.miare.androidcodechallenge.domain.repository
 
-import ir.miare.androidcodechallenge.domain.model.RankingModel
-import ir.miare.androidcodechallenge.util.Either
+import ir.miare.androidcodechallenge.data.model.FakeData
+import kotlinx.coroutines.flow.Flow
 
 interface RankingRepository {
 
-    suspend fun getData(): Either<List<RankingModel>>
+    fun getData(): Flow<List<FakeData>>
 
 }

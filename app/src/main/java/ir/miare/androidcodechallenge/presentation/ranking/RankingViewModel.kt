@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.miare.androidcodechallenge.domain.usecase.GetDataUseCase
-import ir.miare.androidcodechallenge.util.Either
 import ir.miare.androidcodechallenge.util.ViewResource
+import ir.miare.androidcodechallenge.util.asResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,15 +25,27 @@ class RankingViewModel @Inject constructor(
     }
 
     private fun fetchData() {
-        _state.value = _state.value.copy(data = ViewResource.Loading())
         viewModelScope.launch {
-            when (val result = useCase()) {
-                is Either.Failure ->
-                    _state.value =
-                        _state.value.copy(data = ViewResource.Error(result.error.toString()))
-                is Either.Success ->
-                    _state.value = _state.value.copy(data = ViewResource.Success(result.value))
-            }
+            useCase.invoke()
+                .asResult()
+                .collect { result ->
+                    when (result) {
+                        is ViewResource.Loading -> {
+                            _state.value =
+                                _state.value.copy(data = ViewResource.Loading())
+                        }
+                        is ViewResource.Error -> {
+                            _state.value =
+                                _state.value.copy(data = ViewResource.Error(result.error))
+                        }
+
+                        is ViewResource.Success -> {
+                            _state.value =
+                                _state.value.copy(data = ViewResource.Success(result.data))
+                        }
+                        ViewResource.NotAvailable -> Unit
+                    }
+                }
         }
     }
 

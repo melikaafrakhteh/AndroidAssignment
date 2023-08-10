@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ir.miare.androidcodechallenge.data.mapper.DataDomainMapper
 import ir.miare.androidcodechallenge.domain.repository.RankingRepository
 import ir.miare.androidcodechallenge.domain.usecase.GetDataUseCase
 import javax.inject.Singleton
@@ -15,9 +16,10 @@ object DomainModule {
     @Singleton
     @Provides
     fun provideGetDataUseCase(
-        repository: RankingRepository
+        repository: RankingRepository,
+        mapper: DataDomainMapper
     ): GetDataUseCase {
-        return GetDataUseCase(repository)
+        return GetDataUseCase(repository, mapper)
     }
 
 }
