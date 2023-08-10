@@ -1,4 +1,4 @@
-package ir.miare.androidcodechallenge.presentation.ui
+package ir.miare.androidcodechallenge.presentation.ranking
 
 import android.os.Bundle
 import android.os.Handler
@@ -42,6 +42,7 @@ class RankingFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_ranking, container, false)
         binding = FragmentRankingBinding.bind(view)
+
         val retrofit = Retrofit.Builder()
             .baseUrl("https://test_baseurl.com/v2/")
             .addConverterFactory(JacksonConverterFactory.create())

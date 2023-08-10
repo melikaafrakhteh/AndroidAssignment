@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ir.miare.androidcodechallenge.R
 import ir.miare.androidcodechallenge.databinding.ActivityMainBinding
+import ir.miare.androidcodechallenge.presentation.ranking.RankingFragment
 
 class MainActivity : AppCompatActivity() {
 

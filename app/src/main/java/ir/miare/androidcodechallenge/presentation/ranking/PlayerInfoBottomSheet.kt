@@ -1,4 +1,4 @@
-package ir.miare.androidcodechallenge.presentation.ui
+package ir.miare.androidcodechallenge.presentation.ranking
 
 import android.os.Bundle
 import android.view.LayoutInflater
