@@ -24,8 +24,8 @@ import retrofit2.http.GET
 import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread
 
-class RankingFragment(val sortingMode: Int) : Fragment() {
-
+class RankingFragment : Fragment() {
+    val sortingMode: Int = -1
     interface Api {
         @Mock("data.json")
         @GET("list")
