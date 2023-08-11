@@ -1,7 +1,6 @@
 package ir.miare.androidcodechallenge.presentation.ranking
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -75,14 +74,29 @@ class RankingFragment : Fragment() {
             items.addAll(arrayListOf(RankingModel(it.league, it.players)))
         }
         rankingAdapter = RankingAdapter(
-            items,
             onPlayerClicked = ::navigateToPlayerInfoSheet
         )
+
+        rankingAdapter.submitList(convertCurrentList(items))
+
         binding.rvData.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = rankingAdapter
             hasFixedSize()
         }
+    }
+
+    private fun convertCurrentList(items: ArrayList<ItemModel>): MutableList<ItemModel> {
+        val newList: MutableList<ItemModel> = mutableListOf()
+
+        items.forEach { itemModel ->
+            if (itemModel !is RankingModel) return@forEach
+            newList.add(itemModel.league)
+            itemModel.players.forEach { playerModel ->
+                newList.add(playerModel)
+            }
+        }
+        return newList
     }
 
     private fun navigateToPlayerInfoSheet(player: PlayerModel) {
