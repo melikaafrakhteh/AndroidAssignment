@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Club: "
+        android:text="@string/player_sheet_club_title"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_player_name" />
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Goals: "
+        android:text="@string/player_sheet_goals_title"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_team_name_title" />
@@ -72,7 +72,7 @@
         android:layout_margin="32dp"
         android:background="@color/indigo_500"
         android:textColor="@color/white"
-        android:text="Back"
+        android:text="@string/player_sheet_main_btn"
         app:layout_constraintTop_toBottomOf="@id/tv_total_goals_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

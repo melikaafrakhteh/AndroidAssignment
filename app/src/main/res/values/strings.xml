@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">AndroidCodeChallenge</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="item_league_separator">-</string>
+
+    <string name="player_sheet_club_title">Club:</string>
+    <string name="player_sheet_goals_title">Goals:</string>
+    <string name="player_sheet_main_btn">Back</string>
+
+    <string name="activity_title">Sorting by:</string>
+    <string name="activity_radio_first_title">Team &amp; league ranking</string>
+    <string name="activity_radio_second_title">Most goals scored by a player</string>
+    <string name="activity_radio_third_title">Average goal per match in a league</string>
+    <string name="activity_radio_forth_title">None</string>
+
 </resources>

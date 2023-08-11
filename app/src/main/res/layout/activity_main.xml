@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textStyle="bold"
-            android:text="Sorting by: "
+            android:text="@string/activity_title"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <LinearLayout
@@ -39,33 +39,38 @@
             app:layout_constraintTop_toBottomOf="@id/tv_sorting_title">
 
             <RadioGroup
+                android:id="@+id/rg_sort"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RadioButton
+                    android:id="@+id/rb_team_ranking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/indigo_700"
                     android:textStyle="bold"
-                    android:text="Team &amp; league ranking"/>
+                    android:text="@string/activity_radio_first_title"/>
                 <RadioButton
+                    android:id="@+id/rb_most_goal_player"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/indigo_700"
                     android:textStyle="bold"
-                    android:text="Most goals scored by a player"/>
+                    android:text="@string/activity_radio_second_title"/>
                 <RadioButton
+                    android:id="@+id/rb_average_goal_league"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/indigo_700"
                     android:textStyle="bold"
-                    android:text="Average goal per match in a league"/>
+                    android:text="@string/activity_radio_third_title"/>
                 <RadioButton
+                    android:id="@+id/rb_none"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/indigo_700"
                     android:textStyle="bold"
                     android:checked="true"
-                    android:text="None"/>
+                    android:text="@string/activity_radio_forth_title"/>
             </RadioGroup>
 
         </LinearLayout>

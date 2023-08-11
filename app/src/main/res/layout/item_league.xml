@@ -20,7 +20,7 @@
         android:id="@+id/league_separator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" - "
+        android:text="@string/item_league_separator"
         android:textColor="#6E6E6E"
         android:textSize="18sp" />
 
