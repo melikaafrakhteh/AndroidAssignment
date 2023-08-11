@@ -2,10 +2,12 @@ package ir.miare.androidcodechallenge.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import ir.miare.androidcodechallenge.R
 import ir.miare.androidcodechallenge.databinding.ActivityMainBinding
 import ir.miare.androidcodechallenge.presentation.ranking.RankingFragment
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     var binding: ActivityMainBinding? = null
