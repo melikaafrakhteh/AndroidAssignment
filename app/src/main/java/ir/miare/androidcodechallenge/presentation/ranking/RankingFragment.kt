@@ -86,7 +86,7 @@ class RankingFragment : Fragment() {
     }
 
     private fun navigateToPlayerInfoSheet(player: PlayerModel) {
-        PlayerInfoBottomSheet(player).show(
+        PlayerInfoBottomSheet.newInstance(player).show(
             requireActivity().supportFragmentManager, ""
         )
     }
