@@ -24,3 +24,10 @@ data class TeamModel(
 )
 
 open class ItemModel
+
+fun RankingModel.toItemModels(): List<ItemModel> =
+    mutableListOf<ItemModel>().apply {
+        add(league)
+        addAll(players)
+    }fun List<RankingModel>.toItemModels(): List<ItemModel> =
+    map { it.toItemModels() }.flatten()

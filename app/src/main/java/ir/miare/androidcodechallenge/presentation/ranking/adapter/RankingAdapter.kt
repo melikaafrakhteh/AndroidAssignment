@@ -18,6 +18,10 @@ class RankingAdapter(
         }
     }
 
+    override fun submitList(list: List<ItemModel>?) {
+        super.submitList(list?.let { ArrayList(it) })
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankingViewHolder {
         return ViewHolderFactory(parent, viewType).create()
     }

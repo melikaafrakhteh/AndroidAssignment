@@ -13,10 +13,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.miare.androidcodechallenge.databinding.FragmentRankingBinding
 import ir.miare.androidcodechallenge.domain.model.ItemModel
 import ir.miare.androidcodechallenge.domain.model.PlayerModel
-import ir.miare.androidcodechallenge.domain.model.RankingModel
 import ir.miare.androidcodechallenge.presentation.ranking.adapter.RankingAdapter
 import ir.miare.androidcodechallenge.presentation.ranking.sheet.PlayerInfoBottomSheet
 import ir.miare.androidcodechallenge.util.ViewResource
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -39,12 +39,13 @@ class RankingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpRecyclerView()
+
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.state.collect { rankingState ->
+            viewModel.state.collectLatest { rankingState ->
                 initialiseView(rankingState)
             }
         }
-
     }
 
     private fun initialiseView(rankingState: RankingState) {
@@ -58,7 +59,7 @@ class RankingFragment : Fragment() {
             }
             is ViewResource.Success -> {
                 binding.pbLoading.hide()
-                setUpRecyclerView(result.data)
+                updateRecyclerView(result.data)
             }
             ViewResource.NotAvailable -> Unit //do nothing
         }
@@ -68,16 +69,10 @@ class RankingFragment : Fragment() {
         Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
     }
 
-    private fun setUpRecyclerView(result: List<RankingModel>) {
-        val items = ArrayList<ItemModel>()
-        result.forEach {
-            items.addAll(arrayListOf(RankingModel(it.league, it.players)))
-        }
+    private fun setUpRecyclerView() {
         rankingAdapter = RankingAdapter(
             onPlayerClicked = ::navigateToPlayerInfoSheet
         )
-
-        rankingAdapter.submitList(convertCurrentList(items))
 
         binding.rvData.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -86,17 +81,10 @@ class RankingFragment : Fragment() {
         }
     }
 
-    private fun convertCurrentList(items: ArrayList<ItemModel>): MutableList<ItemModel> {
-        val newList: MutableList<ItemModel> = mutableListOf()
-
-        items.forEach { itemModel ->
-            if (itemModel !is RankingModel) return@forEach
-            newList.add(itemModel.league)
-            itemModel.players.forEach { playerModel ->
-                newList.add(playerModel)
-            }
+    private fun updateRecyclerView(result: List<ItemModel>) {
+        rankingAdapter.submitList(result) {
+            binding.rvData.scrollToPosition(0)
         }
-        return newList
     }
 
     private fun navigateToPlayerInfoSheet(player: PlayerModel) {
